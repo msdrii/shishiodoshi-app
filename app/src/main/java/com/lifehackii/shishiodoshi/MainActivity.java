@@ -22,22 +22,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // 音楽開始ボタン
-        Button buttonStart = findViewById(R.id.play);
-
+        Button playButton = findViewById(R.id.play);
         // リスナーをボタンに登録
-        buttonStart.setOnClickListener( v -> {
+        playButton.setOnClickListener( v -> {
             // 音楽再生
             audioPlay();
+            // playボタンを無効にする処理
+            playButton.setEnabled(false);
         });
 
         // 音楽停止ボタン
-        Button buttonStop = findViewById(R.id.stop);
-
+        Button stopButton = findViewById(R.id.stop);
         // リスナーをボタンに登録
-        buttonStop.setOnClickListener( v -> {
+        stopButton.setOnClickListener( v -> {
             if (mediaPlayer != null) {
                 // 音楽停止
                 audioStop();
+                // playボタンを有効にする処理
+                playButton.setEnabled(true);
             }
         });
     }
@@ -45,19 +47,15 @@ public class MainActivity extends AppCompatActivity {
     private boolean audioSetup(){
         // インスタンスを生成
         mediaPlayer = new MediaPlayer();
-
         // 音楽ファイル名 or パス名
         String filePath = "Shishiodoshi_long_v2.mp3";
-
         boolean fileCheck = false;
-
         // assetsからmp3ファイルを読み込み
         try(AssetFileDescriptor assetFileDescriptor = getAssets().openFd(filePath)) {
             // MediaPlayerに読み込んだ音楽ファイルを指定
             mediaPlayer.setDataSource(assetFileDescriptor.getFileDescriptor(),
                     assetFileDescriptor.getStartOffset(),
                     assetFileDescriptor.getLength());
-
             //音量調整を端末のボタンに任せる
             setVolumeControlStream(AudioManager.STREAM_MUSIC);
             mediaPlayer.prepare();
@@ -65,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e1) {
             e1.printStackTrace();
         }
-
         return fileCheck;
     }
 
@@ -89,13 +86,13 @@ public class MainActivity extends AppCompatActivity {
         // 再生する
         mediaPlayer.start();
 
+
         // lambda
         mediaPlayer.setOnCompletionListener( mp -> {
             Log.d("debug", "end of audio");
             audioStop();
         });
     }
-
     private void audioStop() {
         // 再生終了
         mediaPlayer.stop();
@@ -103,8 +100,6 @@ public class MainActivity extends AppCompatActivity {
         mediaPlayer.reset();
         // リソースの解放
         mediaPlayer.release();
-
         mediaPlayer = null;
     }
-
 }
