@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
     private boolean audioSetup(){
         // インスタンスを生成
         mediaPlayer = new MediaPlayer();
+        // ループ設定をオン
+        mediaPlayer.setLooping(true);
         // 音楽ファイル名 or パス名
         String filePath = "Shishiodoshi_long_v2.mp3";
         boolean fileCheck = false;
