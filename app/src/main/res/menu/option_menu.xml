@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_home"
+        android:icon="@drawable/baseline_home_24"
+        android:orderInCategory="1"
+        android:title="ホーム"
+        app:showAsAction="ifRoom"
+    />
+    <item
+        android:id="@+id/action_others"
+        android:title="Find other sounds"
+        app:showAsAction="never"
+    />
+    <item
+        android:id="@+id/action_map"
+        android:title="View map"
+        app:showAsAction="never"
+    />
+</menu>

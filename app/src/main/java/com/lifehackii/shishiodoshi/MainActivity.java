@@ -1,5 +1,6 @@
 package com.lifehackii.shishiodoshi;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.res.AssetFileDescriptor;
@@ -7,6 +8,9 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -87,8 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
         // 再生する
         mediaPlayer.start();
-
-
+        
         // lambda
         mediaPlayer.setOnCompletionListener( mp -> {
             Log.d("debug", "end of audio");
@@ -103,5 +106,21 @@ public class MainActivity extends AppCompatActivity {
         // リソースの解放
         mediaPlayer.release();
         mediaPlayer = null;
+    }
+
+    // 以下メニュー関連
+    // メニュー作成
+    @Override
+    public boolean onCreateOptionsMenu(@NonNull Menu menu) {
+        getMenuInflater().inflate(R.menu.option_menu, menu);
+        return true;
+    }
+
+    // メニュー押下時の処理
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        String message = "「" + item.getTitle() + "」が押されました。";
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        return true;
     }
 }

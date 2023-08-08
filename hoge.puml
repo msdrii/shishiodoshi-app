@@ -1,0 +1,14 @@
+@startuml
+class com.lifehackii.shishiodoshi.MainActivity {
+- MediaPlayer mediaPlayer
+# void onCreate(Bundle)
+- boolean audioSetup()
+- void audioPlay()
+- void audioStop()
++ boolean onCreateOptionsMenu(Menu)
++ boolean onOptionsItemSelected(MenuItem)
+}
+
+
+androidx.appcompat.app.AppCompatActivity <|-- com.lifehackii.shishiodoshi.MainActivity
+@enduml

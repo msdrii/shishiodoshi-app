@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">ししおどし</string>
+    <string name="app_name">Sounds of Japan</string>
+    <string name="title_activity_play_sounds">playSoundsActivity</string>
 </resources>
